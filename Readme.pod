@@ -186,11 +186,11 @@ initialize C<MANochrome_pod> with options.
           },
           {
             "url": "https://perl.org",
-            "html": "🐫 perl.org"
+            "html": "perl.org"
           },
           {
             "url": "https://perlmonks.org",
-            "html": "🐫 perlmonks.org"
+            "html": "perlmonks.org"
           }
         ]
       };
