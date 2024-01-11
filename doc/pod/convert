@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CSTRING="MANochrome"
+NSTRING="manochrome"
+README="Readme.pod"
+MANDIR="../man/man1"
+INFILE="${NSTRING}.pod"
+OUTFILE="${MANDIR}/${NSTRING}.1"
+COPYOUTFILE="${MANDIR}/manopod2html.1"
+DATE=`date "+%Y-%m-%d"`
+VERSION="v0.1"
+
+[[ ! -d $MANDIR ]] && echo "Could not find $MANDIR." && exit 1
+
+[[ ! -e ../../${README} ]] && echo "Could not find ${README}." \
+    && exit 1
+
+cp ../../${README} ./${NSTRING}.pod
+
+[[ ! -e $INFILE ]] && echo "$INFILE does not exist." && exit 1
+
+pod2man -n $NSTRING -c $CSTRING -d "$DATE" \
+    --release=$VERSION < $INFILE > $OUTFILE
+
+[[ ! -e $OUTFILE ]] && echo "$OUTFILE not created." && exit 1
+
+cp $OUTFILE $COPYOUTFILE
+
+echo "File $OUTFILE created."
+echo "File $COPYOUTFILE created."

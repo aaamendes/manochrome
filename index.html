@@ -1,0 +1,925 @@
+<!doctype html>
+<html>
+<head>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<link rev="made" href="mailto:root@bbmhh.p1s.plx.sd.apple.com" />
+<style>
+* {
+  color: initial;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  /* max-width: 91ch; */
+  width: 100%;
+  font-family: monospace;
+  background: black;
+  color: #ccc;
+  font-size: 16px;
+  padding-bottom: 100vh;
+  overflow-x: hidden;
+}
+
+p,i,pre,code,font {
+  color: #ccc;
+}
+
+h1,h2 {
+  color: white;
+  font-size: 1rem;
+  margin-bottom: -1rem;
+  padding-top: 1rem;
+}
+h2 {
+  margin-left: 3ch;
+}
+h3,h4 {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-left: 7ch;
+  text-decoration: underline;
+  color: #ccc;
+}
+
+dt {
+  margin-left: 7ch;
+  color: #ccc;
+}
+
+b {
+  color: white;
+}
+
+p {
+  margin-left: 7ch;
+  line-height: 1.2rem;
+}
+
+ul {
+  margin-left: 7ch;
+}
+
+pre {
+  margin-left: 11ch;
+}
+
+a {
+  color: #fff;
+}
+a:visited {
+  color: #a5a5a5;
+}
+
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  padding-right: 4rem;
+}
+
+.navigation {
+  position: fixed;
+  width: 377px;
+  height: 100vh;
+  background: #0a0a0a;
+  overflow: auto;
+  left: 0;
+  transition: left .3s;
+}
+.navi-hide {
+  left: -319px !important;
+}
+.navigation a {
+  font-size: .9em;
+}
+.navigation ul {
+  padding: 0;
+  margin: 0;
+  line-height: 1rem;
+  list-style: none;
+}
+.navigation ul#index {
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.navigation ul li {
+  margin: 0;
+  background: #1e1e1e;
+}
+.navigation ul li ul li {
+  background: #131313;
+}
+.navigation ul li a {
+  display: block;
+  text-decoration: none;
+  padding: .3rem 1rem;
+  border-bottom: 1px solid #000;
+  color: #fff;
+}
+.navigation ul li ul li a {
+  padding: .3rem 3rem;
+  border-bottom: 1px solid #000;
+}
+.navigation ul li ul li ul li a {
+  padding: .3rem 5rem;
+}
+ul li a:hover, ul li a:active, u li a:focus {
+  background: #000;
+}
+.nav-link-active {
+  background: #000;
+}
+
+/*** #links-wrapper ***********************************************************/
+
+#links-wrapper h2 {
+  font-size: initial;
+  margin: 0 0 0 1rem;;
+  padding: 1rem 0;
+  background: transparent;
+}
+
+#links-wrapper a:hover {
+  background: initial;
+}
+
+/*** #links-wrapper END *******************************************************/
+
+.navigation .open-close-wrapper {
+  text-align: right;
+  padding: 1rem;
+}
+
+.open-close-wrapper a {
+  all: initial;
+  font-size: .8rem;
+  width: 21px;
+  height: 21px;
+  cursor: pointer;
+  color: #fff;
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-flex;
+  border: 1px solid #fff;
+  padding: 0.1rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s;
+}
+.open-close-wrapper a:hover {
+  background: #fff;
+  color: #111;
+}
+
+.rotate-180 {
+  transform: rotate(180deg) !important;
+}
+
+.content {
+  position: relative;
+  max-width: 1440px;
+  margin-left: calc(377px + 2rem);
+  padding-left: 2rem;
+  transition: margin-left .3s;
+}
+.c-move-left {
+  margin-left: 72px !important;
+}
+
+
+
+
+pre {
+  background: #0f0f0f;
+  padding: 1.2rem;
+  border-radius: .1rem;
+  max-width: 80ch;
+}
+
+@media (max-width: 430px) {
+  .navigation {
+    z-index: 9;
+  }
+  .content {
+    margin-left: 0;
+    padding: 0 .5rem;
+  }
+  .wrapper {
+    padding-right: .5rem;
+  }
+  h1,h2,h3,h4,dt,p,ul,pre {
+    margin-left: 0;
+  }
+  * {
+    overflow: overlay;
+  }
+  
+}
+</style>
+</head>
+
+<body>
+
+
+
+<ul id="index">
+  <li><a href="#NAME">NAME</a></li>
+  <li><a href="#SYNOPSIS">SYNOPSIS</a></li>
+  <li><a href="#DESCRIPTION">DESCRIPTION</a>
+    <ul>
+      <li><a href="#MANochrome">MANochrome</a>
+        <ul>
+          <li><a href="#Themes">Themes</a></li>
+          <li><a href="#Javascript">Javascript</a></li>
+          <li><a href="#class-MANochrome">class MANochrome</a></li>
+          <li><a href="#class-MANochrome_pod">class MANochrome_pod</a></li>
+          <li><a href="#manochrome-options">manochrome options</a></li>
+        </ul>
+      </li>
+      <li><a href="#manopod2html">manopod2html</a>
+        <ul>
+          <li><a href="#OPTIONS">OPTIONS</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#EXAMPLES">EXAMPLES</a>
+    <ul>
+      <li><a href="#Build-from-POD">Build from POD</a></li>
+      <li><a href="#Build-from-MAN">Build from MAN</a></li>
+      <li><a href="#manochrome-options1">manochrome options</a></li>
+    </ul>
+  </li>
+  <li><a href="#INSTALLATION">INSTALLATION</a></li>
+  <li><a href="#FILES">FILES</a></li>
+  <li><a href="#SEE-ALSO">SEE ALSO</a></li>
+  <li><a href="#AUTHORS">AUTHORS</a></li>
+  <li><a href="#COPYRIGHT">COPYRIGHT</a></li>
+  <li><a href="#POD-ERRORS">POD ERRORS</a></li>
+</ul>
+
+<h1 id="NAME">NAME</h1>
+
+<p>MANochrome - CSS and Javascript for HTML generated by <a href="http://man.he.net/man1/pod2html">pod2html(1)</a>.</p>
+
+<p>manopod2html - Converts <i>.pod</i> files to <i>.html</i> files with MANochrome included.</p>
+
+<h1 id="SYNOPSIS">SYNOPSIS</h1>
+
+<p><b>manopod2html</b> <b>-t</b> theme [<b>-i</b> input_file] <b>-o</b> output_file [<b>-f</b>]</p>
+
+<h1 id="DESCRIPTION">DESCRIPTION</h1>
+
+<p>The goal is to present information in a man page like style with some appeal to the eye. The <i>dark</i> theme comes closest to that goal. The <i>monk</i> theme deviates a bit from the initially monochrome style while still being simple and giving a pleasant reading experience. It&#39;s inspired by <a href="https://perlmonks.org">https://perlmonks.org</a>.</p>
+
+<p>While the intention is mainly to convert <i>.pod</i> files, it is also possible to convert man pages. For further information, please see the <a href="#EXAMPLES">&quot;EXAMPLES&quot;</a> section.</p>
+
+<p>Nicely formatted <i>.pod</i> files work best and look great.</p>
+
+<h2 id="MANochrome">MANochrome</h2>
+
+<p>A set of cascading stylesheets (themes) and some Javascript which is explained in the following sections.</p>
+
+<h3 id="Themes">Themes</h3>
+
+<p>can be included in the &lt;head&gt; of an HTML file and will change the look of the HTML page. They can be used in any HTML file but are intended to be used with HTML generated by <a href="http://man.he.net/man1/pod2html">pod2html(1)</a>.</p>
+
+<p>Available themes are</p>
+
+<pre><code>  light
+  dark
+  monk</code></pre>
+
+<h3 id="Javascript">Javascript</h3>
+
+<p>is optional but must be inserted before the closing <code>body</code> tag.</p>
+
+<h3 id="class-MANochrome">class MANochrome</h3>
+
+<p>The parent class, it is not initialized.</p>
+
+<h3 id="class-MANochrome_pod">class MANochrome_pod</h3>
+
+<p>creates a sidebar with a fixed index where a link to the corresponding section is <b>highlighted</b> when <b>scrolling</b> through the page or when <b>clicked</b>. An Index must be present in the HTML for this to work. <a href="http://man.he.net/man1/pod2html">pod2html(1)</a> generates an index by default. Said index is an unordered list (<code>&lt;ul</code>&gt;) with the <code>id</code> <code>&quot;index&quot;</code>.</p>
+
+<p>The class must be initialized with some Javascript after <i>js/manochrome.js</i> was included.</p>
+
+<pre><code>  const manochrome = new MANochrome_pod();</code></pre>
+
+<h3 id="manochrome-options">manochrome options</h3>
+
+<p>When initializing with <code>new MANochrome_pod()</code> an <i>options</i> object can can be passed. This must be adjusted manually but is very easy. Take a look at <i>js/init.js</i>, <a href="#manopod2html">&quot;manopod2html&quot;</a> inserts the content of this file inside a script tag below the closing body tag.</p>
+
+<dl>
+
+<dt id="logo_path-string"><b>logo_path</b> &lt;string&gt;</dt>
+<dd>
+
+<p>A path or URL to the image.</p>
+
+</dd>
+<dt id="links-array"><b>links</b> &lt;array&gt;</dt>
+<dd>
+
+<p>An array of objects like:</p>
+
+<pre><code>    &quot;links&quot;: [
+      {
+        &quot;url&quot;: &quot;https://github.com/medecaj/manochrome.git&quot;,
+        &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&quot;&gt; Repo&quot;
+      },
+      {
+        &quot;url&quot;: &quot;https://perl.org&quot;,
+        &quot;html&quot;: &quot;&#x1F42B; perl.org&quot;
+      },
+      {
+        &quot;url&quot;: &quot;https://perlmonks.org&quot;,
+        &quot;html&quot;: &quot;&#x1F42B; perlmonks.org&quot;
+      }
+    ]</code></pre>
+
+</dd>
+</dl>
+
+<p><a href="#manopod2html">&quot;manopod2html&quot;</a> can do all of this for you.</p>
+
+<h2 id="manopod2html">manopod2html</h2>
+
+<p>This perl script uses <code>Pod::Html</code> to generate HTML from a <i>.pod</i> file. If used without the <b>-f</b> flag, it will create a directory <i>manochrome_build</i> with the structure</p>
+
+<pre><code>  manochrome_build/
+  &#x251C;&#x2500;&#x2500; css
+  &#x2502;&nbsp;&nbsp; &#x2514;&#x2500;&#x2500; manochrome_&lt;theme&gt;.css
+  &#x251C;&#x2500;&#x2500; &lt;output.html&gt;
+  &#x2514;&#x2500;&#x2500; js
+      &#x2514;&#x2500;&#x2500; manochrome.js</code></pre>
+
+<p>where &lt;theme&gt; is the theme chosen with the <b>-t</b> flag and &lt;output.html&gt; is the output file name chosen with <b>-o</b>.</p>
+
+<h3 id="OPTIONS">OPTIONS</h3>
+
+<dl>
+
+<dt id="t-theme"><b>-t</b> &lt;theme&gt;</dt>
+<dd>
+
+<p>Pass the name of a theme.</p>
+
+</dd>
+<dt id="i-input_file"><b>-i</b> &lt;input_file&gt;</dt>
+<dd>
+
+<p>Pass the input file.</p>
+
+<p>If this flag is ommitted, read from STDIN.</p>
+
+</dd>
+<dt id="o-output_file"><b>-o</b> &lt;output_file&gt;</dt>
+<dd>
+
+<p>Pass the output file.</p>
+
+</dd>
+<dt id="f"><b>-f</b></dt>
+<dd>
+
+<p>Build a single file with css and javascript included.</p>
+
+</dd>
+</dl>
+
+<h1 id="EXAMPLES">EXAMPLES</h1>
+
+<h2 id="Build-from-POD">Build from POD</h2>
+
+<p>Build <code>index.html</code> from <code>Readme.pod</code> in the repository <a href="https://github.com/medecaj/manochrome.git">https://github.com/medecaj/manochrome.git</a></p>
+
+<pre><code>  manopod2html -i Readme.pod -o index.html -t dark -f</code></pre>
+
+<h2 id="Build-from-MAN">Build from MAN</h2>
+
+<p>The tool <a href="http://man.he.net/man1/rman">rman(1)</a> can create <i>.pod</i> files from man pages. We use it in combination with manopod2html:</p>
+
+<pre><code>  man man | rman -f POD | \
+  manopod2html -o man.html -t dark -f</code></pre>
+
+<h2 id="manochrome-options1">manochrome options</h2>
+
+<p>Add this script to the bottom of your html before the closing body tag to initialize <code>MANochrome_pod</code> with options.</p>
+
+<pre><code>  &lt;script&gt;
+    () =&gt; {
+      &#39;use strict&#39;;
+    
+      const options = {
+        /*
+         * Add a logo to top of the sidebar.
+         */
+        &quot;logo_path&quot;: &quot;img/logo.png&quot;,
+        /*
+         * Add links to the &quot;LINKS&quot; section at the bottom of the sidebar.
+         * The &quot;LINKS&quot; section will only be created if this option is passed.
+         */
+        &quot;links&quot;: [
+          {
+            &quot;url&quot;: &quot;https://github.com/medecaj/manochrome.git&quot;,
+            &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&gt; Repo&quot;
+          },
+          {
+            &quot;url&quot;: &quot;https://perl.org&quot;,
+            &quot;html&quot;: &quot;&#x1F42B; perl.org&quot;
+          },
+          {
+            &quot;url&quot;: &quot;https://perlmonks.org&quot;,
+            &quot;html&quot;: &quot;&#x1F42B; perlmonks.org&quot;
+          }
+        ]
+      };
+    
+      const manochrome = (MANochrome.has_index_id()) ? 
+        new MANochrome_pod(options) : false;
+    
+    })();
+  &lt;/script&gt;</code></pre>
+
+<h1 id="INSTALLATION">INSTALLATION</h1>
+
+<p>Just type</p>
+
+<pre><code>  make</code></pre>
+
+<p>to install and</p>
+
+<pre><code>  make uninstall</code></pre>
+
+<p>to uninstall.</p>
+
+<h1 id="FILES">FILES</h1>
+
+<dl>
+
+<dt id="usr-local-bin-manopod2html"><i>/usr/local/bin/manopod2html</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-man-man1-manochrome.1"><i>/usr/local/share/man/man1/manochrome.1</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-man-man1-manopod2html.1"><i>/usr/local/share/man/man1/manopod2html.1</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-manochrome-js-manochrome.js"><i>/usr/local/share/manochrome/js/manochrome.js</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-manochrome-js-init.js"><i>/usr/local/share/manochrome/js/init.js</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-manochrome-css-manochrome_dark.css"><i>/usr/local/share/manochrome/css/manochrome_dark.css</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-manochrome-css-manochrome_light.css"><i>/usr/local/share/manochrome/css/manochrome_light.css</i></dt>
+<dd>
+
+</dd>
+<dt id="usr-local-share-manochrome-css-manochrome_monk.css"><i>/usr/local/share/manochrome/css/manochrome_monk.css</i></dt>
+<dd>
+
+</dd>
+</dl>
+
+<h1 id="SEE-ALSO">SEE ALSO</h1>
+
+<p><a href="http://man.he.net/man1/man">man(1)</a>, <a href="http://man.he.net/man1/pod2html">pod2html(1)</a>, <a href="http://man.he.net/man1/rman">rman(1)</a>, <a href="http://man.he.net/man1/pod2man">pod2man(1)</a>, <a href="http://man.he.net/man1/groff">groff(1)</a></p>
+
+<h1 id="AUTHORS">AUTHORS</h1>
+
+<p><a href="mailto:medecaj@pm.me">Albert Mendes</a> <a href="https://github.com/medecaj">https://github.com/medecaj</a></p>
+
+<h1 id="COPYRIGHT">COPYRIGHT</h1>
+
+<p><span style="white-space: nowrap;"><i>Copyright &copy; 2024 Albert Mendes</i></span></p>
+
+<p>MANochrome is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.</p>
+
+<h1 id="POD-ERRORS">POD ERRORS</h1>
+
+<p>Hey! <b>The above document had some coding errors, which are explained below:</b></p>
+
+<dl>
+
+<dt id="Around-line-93">Around line 93:</dt>
+<dd>
+
+<p>Non-ASCII character seen before =encoding in &#39;&quot;&#x1F42B;&#39;. Assuming UTF-8</p>
+
+</dd>
+</dl>
+
+
+<script>
+class MANochrome {
+  constructor(options={}) {
+    this.html = document.body;
+    this.generator = (typeof(options.generator) === "string") ? options.generator : "pod2html";
+    this.options = options;
+    this.headers = null;
+    this.index = null;
+    this.index_links = null;
+    this.navigation = null;
+    this.navigation_active_css_class = "nav-link-active";
+    this.navi_open = true;
+    this.windowMaxWidth = 430;
+
+    this.build_index()
+      .then((resp) => this.separate_index_content())
+      .then((resp) => this.prettify_navigation())
+      .then((resp) => { return this.sort_headers(); })
+      .then((resp) => { 
+        this.headers = resp;
+
+        this.insert_open_close()
+          .then(this.insert_links())
+          .then(this.insert_logo())
+          .then(this.set_mobile())
+          .then(this.set_options());
+
+      });
+  }
+
+  set_options() {
+    return new Promise((resolve, reject) => {
+      resolve(true);
+    });
+  }
+
+  set_mobile() {
+    return new Promise((resolve, reject) => {
+      if (window.innerWidth <= this.windowMaxWidth) {
+        document.getElementById("open-close-link").click();
+      }
+      resolve(true);
+    });
+  }
+
+  navi_open_close(link) {
+    let navi = document.getElementById("navigation");
+    let content = document.getElementsByClassName("content")[0];
+    if (this.navi_open) {
+      navi.classList.add("navi-hide");
+      content.classList.add("c-move-left");
+      link.classList.add("rotate-180");
+      this.navi_open = !this.navi_open;
+    }
+    else {
+      navi.classList.remove("navi-hide");
+      content.classList.remove("c-move-left");
+      link.classList.remove("rotate-180");
+      this.navi_open = !this.navi_open;
+    }
+  }
+
+  insert_open_close() {
+    return new Promise((resolve, reject) => {
+      let ocwrapper = document.createElement("div");
+      ocwrapper.classList.add("open-close-wrapper");
+      ocwrapper.setAttribute("id", "open-close-wrapper");
+
+      let a = document.createElement("a");
+      a.setAttribute("id", "open-close-link");
+      a.setAttribute("href", "#");
+      a.textContent = "<";
+
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        this.navi_open_close(a);
+      });
+
+      ocwrapper.appendChild(a);
+
+      let navi = document.getElementById("navigation");
+      navi.insertBefore(ocwrapper, navi.firstChild);
+    });
+  }
+
+  insert_links() {
+    return new Promise((resolve, reject) => {
+      if (typeof(this.options.links) !== "object") {
+        resolve(false);
+        return;
+      }
+      let wrapper = document.createElement("div");
+      wrapper.setAttribute("id", "links-wrapper");
+
+      let h2 = document.createElement("h2");
+      h2.textContent = "🔗 LINKS";
+      let ul = document.createElement("ul")
+
+      this.options.links.map((item, i) => {
+        let li = document.createElement("li");
+        let a = document.createElement("a");
+        a.innerHTML = item.html;
+        a.setAttribute("href", item.url);
+        a.setAttribute("target", "_blank");
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+
+      wrapper.appendChild(h2);
+      wrapper.appendChild(ul);
+
+      let navi = document.getElementById("navigation");
+      navi.appendChild(wrapper);
+
+      resolve(true);
+    });
+  }
+
+  insert_logo() {
+    return new Promise((resolve, reject) => {
+      if (typeof(this.options.logo_path) !== "string") {
+        resolve(false);
+        return;
+      }
+
+      let navigation_node = document.getElementById("navigation");
+      let img = document.createElement("img");
+      img.setAttribute("src", this.options.logo_path);
+      img.style.width = "100%";
+
+      navigation_node.insertBefore(img, navigation_node.firstChild);
+
+      resolve(true);
+    });
+  }
+
+  build_index() {
+    return new Promise((resolve, reject) => {
+      let msg = `method build_index() not implemented in class ${this.constructor.name}`
+      console.warn(msg);
+      resolve(msg);
+    });
+  }
+
+  separate_index_content() {
+    return new Promise((resolve, reject) => {
+
+      this.body = document.body.cloneNode(true);
+      this.wrapper = document.createElement("div");
+      this.wrapper.classList.add("wrapper");
+
+      this.content = document.createElement("div");
+      this.content.classList.add("content");
+      this.content.innerHTML = this.body.innerHTML;
+
+      this.navigation = document.createElement("div");
+      this.navigation.classList.add("navigation");
+      this.navigation.setAttribute("id", "navigation");
+      this.navigation.innerHTML = this.index.outerHTML;
+
+      [
+        this.navigation,
+        this.content
+      ].map((node, index) => {
+        this.wrapper.appendChild(node);
+      });
+
+      document.body.innerHTML = this.wrapper.outerHTML;
+
+      // Get the cloned index.
+      this.index = document.getElementById("index");
+
+      resolve("separate_index_content done");
+    });
+  }
+
+  get_nav_index_by_string(str, get_num=0) {
+    return new Promise((resolve, reject) => {
+      for (let i = 0; i < this.index_links.length; i++) {
+        if (this.index_links[i].innerHTML === str) {
+          if (get_num === 0)
+            resolve(this.index_links[i]);
+          else
+            resolve(i);
+
+          return;
+        }
+      }
+    });
+
+    resolve(false);
+    return;
+  }
+
+  async change_nav_on_scroll() {
+    let offset_y = window.scrollY;
+    let grace = 21;
+
+    for (let i = 0; i < this.headers.length; i++) {
+      let check_node = await this.get_nav_index_by_string(this.headers[i].innerHTML);
+
+      if (offset_y >= (this.headers[i].offsetTop - grace)) {
+        this.set_link_active(check_node);
+      }
+
+    }
+  }
+
+  set_link_active(node) {
+    for (let i = 0; i < this.index_links.length; i++) {
+      this.index_links[i].classList.remove(this.navigation_active_css_class);
+    }
+
+    node.classList.add(this.navigation_active_css_class);
+  }
+
+  async sort_headers() {
+    let new_arr = [];
+    for (let i = 0; i < this.headers.length; i++) {
+      let link_index = await this.get_nav_index_by_string(this.headers[i].innerHTML, 1);
+      new_arr[link_index] = this.headers[i];
+    }
+
+    return new_arr;
+  }
+
+  prettify_navigation() {
+    return new Promise((resolve, reject) => {
+      this.index_links = this.index.getElementsByTagName("a");
+
+      for (let i = 0; i < this.index_links.length; i++) {
+        this.index_links[i].addEventListener("click", (e) => {
+          this.set_link_active(this.index_links[i]);
+        });
+      }
+
+      this.set_link_active(this.index_links[0]);
+
+      this.headers = Array.from(document.getElementsByTagName("h1"))
+      this.headers = this.headers.concat(Array.from(document.getElementsByTagName("h2")));
+      this.headers = this.headers.concat(Array.from(document.getElementsByTagName("h3")));
+      this.headers = this.headers.concat(Array.from(document.getElementsByTagName("h4")));
+
+      window.addEventListener("scroll", (e) => {
+        this.change_nav_on_scroll();
+      });
+
+      resolve("prettify_navigation done");
+    });
+  }
+
+  /*
+   * HTML generated by pod2html has an UL with id "index".
+   */
+  static has_index_id() {
+    return (document.getElementById("index") !== null) ? (
+      (document.getElementById("index").tagName === "UL") ? true : false
+    ) : false;
+  }
+  /*
+   * So far in development, we only have pod2html.
+   */
+  static determine_generator() {
+    const gen_try = document.head.querySelector(
+      'meta[name="generator"]'
+    );
+
+    return (gen_try === null) ? "pod2html" :
+      (
+        (gen_try.content.includes("groff")) ? "groff" : gen_try.content
+      )
+  }
+}
+
+class MANochrome_pod extends MANochrome {
+  constructor(options={}) {
+    super(options);
+  }
+
+  /*
+   * Index is already there.
+   * Clone Node (<UL>) and remove original.
+   */
+  build_index() {
+    return new Promise((resolve, reject) => {
+      const index = document.getElementById("index");
+      this.index = index.cloneNode(true);
+      index.remove();
+      resolve("build_index done");
+    });
+  }
+}
+
+/*
+ * TODO
+ * This is experimental.
+ */
+class MANochrome_groff extends MANochrome {
+  constructor(generator) {
+    super(generator);
+  }
+
+  build_index() {
+    let ul = document.createElement("ul");
+    ul.setAttribute("id", "index");
+    let delete_arr = [];
+
+    return new Promise((resolve, reject) => {
+      let next_link = document.getElementsByTagName("h1")[0];
+      let i = 0;
+      while (next_link.nextElementSibling.tagName !== "HR") {
+        if (next_link.nextElementSibling.tagName !== "A") {
+          next_link = next_link.nextElementSibling;
+          delete_arr.push(next_link);
+          continue;
+        }
+
+        let li = document.createElement("li");
+        let a = next_link.nextElementSibling.cloneNode(true);
+        li.appendChild(a);
+        ul.appendChild(li);
+
+        next_link = next_link.nextElementSibling;
+        delete_arr.push(next_link);
+        i++;
+      }
+
+      /*
+       * Set this.index.
+       */
+      this.index = ul;
+
+      delete_arr.map((node, i) => {
+        node.remove();
+      });
+
+      /* 
+       * Remove HR.
+       */
+      const hr = document.getElementsByTagName("h1")[0].nextElementSibling;
+
+      if (hr.tagName === "HR")
+        hr.remove();
+
+      resolve("build_index done");
+    });
+  }
+}
+</script>
+<script>
+(() => {
+  'use strict';
+
+  const options = {
+    /*
+     * Add a logo to top of the sidebar.
+     */
+    "logo_path": "img/logo.png",
+    /*
+     * Add links to the "LINKS" section at the bottom of the sidebar.
+     * The "LINKS" section will only be created if this option is passed.
+     */
+    "links": [
+      {
+        "url": "https://github.com/medecaj/manochrome.git",
+        "html": "<img src=\"img/github-mark-white.svg\" style=\"height:1rem;vertical-align:middle\"> MANochrome repository"
+      },
+      {
+        "url": "https://perl.org",
+        "html": "🐫 perl.org"
+      },
+      {
+        "url": "https://perlmonks.org",
+        "html": "🐫 perlmonks.org"
+      }
+    ]
+  };
+
+  const manochrome = (MANochrome.has_index_id()) ? 
+    new MANochrome_pod(options) : false;
+
+})();
+</script></body>
+
+</html>
+
+

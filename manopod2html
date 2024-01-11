@@ -1,0 +1,236 @@
+#!/usr/bin/perl
+# vim: se ft=perl:
+
+################################################################################
+# manopod2html: Prettify html generated from .pod file.                        #
+#                                                                              #
+# Author:                                                                      #
+#     Albert Mendes                                                            #
+#                                                                              #
+# Description:                                                                 #
+#     manopod2html uses Pod::Html to generate the html source.                 #
+#     It also inserts the manochrome Javascript and an initialization          #
+#       script before the body closing tag.                                    #
+#     pod2html inserts the manochrome CSS theme depending on the -t flag       #
+#       if -f is not set, otherwise manopod2html inserts the css in a          #
+#       <style> tag before </head>.                                            #
+#                                                                              #
+# Usage:                                                                       #
+#     manopod2html -t <theme> [-i <input_file>] -o <output_file> [-f]          #
+#                                                                              #
+#     -f              build single file with CSS and Javascript included       #
+#                                                                              #
+#     Available themes                                                         #
+#                                                                              #
+#                     - light                                                  #
+#                     - dark                                                   #
+#                     - monk                                                   #
+#                                                                              #
+################################################################################
+
+use strict;
+use warnings;
+use Getopt::Std;
+use File::Copy;
+use Term::ANSIColor;
+use Pod::Html;
+
+my %opts;
+getopts('ht:i:o:f', \%opts);
+
+if ($opts{h}) {
+    help();
+    exit(0);
+}
+
+# Check if all necessary options were passed.
+if (!$opts{t} || !$opts{o}) {
+    help();
+    exit(1);
+}
+
+my $package = "manochrome";
+my $datadir = "/usr/local/share/$package";
+my $cssdir = "css";
+my $jsdir = "js";
+my $builddir = "./${package}_build";
+my $local_css_dir = "${builddir}/css";
+my $local_js_dir = "${builddir}/js";
+my $js_src = "$datadir/$jsdir/$package.js";
+my $init_js_file = "init.js";
+my $init_js_src = "$datadir/$jsdir/$init_js_file";
+my $css_src_prefix = "$datadir/$cssdir";
+my %css_theme_src = (
+    "dark"      => $css_src_prefix . "/${package}_dark.css",
+    "monk"      => $css_src_prefix . "/${package}_monk.css",
+    "light"     => $css_src_prefix . "/${package}_light.css"
+);
+my $html_edit_file;
+my $temp_file = "manochrome.temp";
+my $input_file = ($opts{i}) ? $opts{i} : $temp_file;
+my $doctype = "<!doctype html>\n";
+my $viewport = '<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />' . "\n";
+
+if(!$opts{i}) {
+    print "Reading from STDIN ...\n";
+    open(TEMP, ">$temp_file") or die $!;
+    print TEMP $_ while (<>);
+    close(TEMP);
+}
+
+check_sources(\$js_src, \$init_js_src, \$css_src_prefix, \%css_theme_src);
+
+my @options = (
+    "--infile=" . $input_file,
+    "--outfile=" . $opts{o},
+);
+
+if (!$opts{f}) {
+    $html_edit_file = "$builddir/$opts{o}";
+
+    # If output is not a single file
+    # put everything in $builddir.
+
+    # Create directories.
+    foreach my $d (
+        $builddir,
+        $local_css_dir,
+        $local_js_dir
+    ) {
+        mkdir($d);
+    }
+
+    # Set options.
+    $options[1] = "--outfile=$builddir/$opts{o}";
+    push(@options, "--css=" . "css/${package}_$opts{t}.css");
+
+    # Copy files.
+    copy($css_theme_src{$opts{t}}, $local_css_dir);
+    copy($js_src, $local_js_dir);
+}
+else {
+    $html_edit_file = $opts{o};
+
+    open(CSS, "<$css_theme_src{$opts{t}}") or die "$!";
+    my @css = <CSS>;
+    close(CSS);
+
+    $css_theme_src{$opts{t}} = "<style>\n";
+    $css_theme_src{$opts{t}} .= $_ for (@css);
+    $css_theme_src{$opts{t}} .= "</style>\n";
+}
+
+my $script_src = (!$opts{f}) ? "<script src=\"js/$package.js\"></script>\n" : "";
+
+if ($opts{f}) {
+    open(JS, "<$js_src") or die "$!";
+    my @js = <JS>;
+    close(JS);
+
+    $script_src = "<script>\n";
+    $script_src .= $_ for (@js);
+    $script_src .= "</script>\n";
+}
+
+my $init_manochrome = "<script>\n";
+open(IM, "<$init_js_src");
+my @im = <IM>;
+close(IM);
+$init_manochrome .= $_ for @im;
+$init_manochrome .= "</script>";
+
+# Generate html using pod2html.
+pod2html(@options);
+
+# Edit the generated html.
+open(HTML, "<$html_edit_file") or die $!;
+my @html = <HTML>;
+close(HTML);
+
+open(EDIT, ">$html_edit_file") or die "$!";
+
+for (@html) {
+    if ($opts{f}) {
+        if ($_ =~ m/^<\/head>/) {
+            print EDIT $css_theme_src{$opts{t}};
+        }
+    }
+    if ($_ =~ m/^<\/body>/) {
+        print EDIT $script_src;
+        print EDIT $init_manochrome;
+    }
+    # Remove xml version and change doctype.
+    if ($_ =~ m/^<\?xml version/) {
+      next;
+    }
+    if ($_ =~ m/^<!DOCTYPE/) {
+      print EDIT $doctype;
+      next;
+    }
+    if ($_ =~ m/^<html/) {
+      print EDIT "<html>\n";
+      next;
+    }
+    # Insert meta viewport
+    if ($_ =~ m/^<title/) {
+      print EDIT $_;
+      print EDIT $viewport;
+      next;
+    }
+    print EDIT $_;
+}
+
+close(EDIT);
+
+if (-e $temp_file) {
+    unlink($temp_file);
+}
+# Remove pod2htmd.tmp generated by pod2html
+if (-e "pod2htmd.tmp") {
+  unlink("pod2htmd.tmp");
+}
+
+################################################################################
+# SUBROUTINES
+
+sub check_sources {
+    my ($js_src, $init_js_src, $css_src_prefix, $css_theme_src) = @_;
+    # /usr/local/share is prefered.
+    $datadir = (! -e $datadir) ? "." : $datadir;
+    ${$js_src} = "$datadir/$jsdir/$package.js";
+    ${$init_js_src} = "$datadir/$jsdir/$init_js_file";
+    ${$css_src_prefix} = "$datadir/$cssdir";
+
+    # Make sure sources are correct in case $datadir changed.
+    foreach my $k (keys %{$css_theme_src}) {
+        $css_theme_src{$k} = ${$css_src_prefix} . "/${package}_$k.css";
+    }
+
+    foreach (
+        $datadir,
+        ${$js_src},
+        ${$css_src_prefix},
+    ) {
+        if (! -e $_) {
+            print "File $_ does not exist.\n";
+            exit(1);
+        }
+    }
+
+    if (!defined ${$css_theme_src}{$opts{t}}) {
+        print "Theme $opts{t} does not exist.";
+        exit(1);
+    }
+}
+
+sub help {
+    print "Usage: $0 -t <theme> [-i <input_file>] -o <output_file> [-f]\n\n";
+    print color('bold'); print "\t-f\t\t\t"; print color('reset');
+    print "build single .html file with CSS and Javascript included\n\n";
+    print color('bold');
+    print "\tAvailable themes\n";
+    print color('reset');
+    print "\t\t\t\t- light\n";
+    print "\t\t\t\t- dark\n";
+    print "\t\t\t\t- monk\n";
+}
