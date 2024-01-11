@@ -90,11 +90,11 @@ An array of objects like:
       },
       {
         "url": "https://perl.org",
-        "html": "🐫 perl.org"
+        "html": "perl.org"
       },
       {
         "url": "https://perlmonks.org",
-        "html": "🐫 perlmonks.org"
+        "html": "perlmonks.org"
       }
     ]
 
