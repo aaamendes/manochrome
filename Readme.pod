@@ -112,7 +112,7 @@ F<manochrome_build> with the structure
 
 	manochrome_build
 	+-- css
-	│   \-- manochrome_dark.css
+	|   \-- manochrome_dark.css
 	+-- index.html
 	\-- js
 	    \-- manochrome.js
