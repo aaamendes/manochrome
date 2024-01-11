@@ -110,12 +110,12 @@ F<manochrome_build> with the structure
 
 =encoding UTF-8
 
-  manochrome_build/
-  ├── css
-  │   └── manochrome_<theme>.css
-  ├── <output.html>
-  └── js
-      └── manochrome.js
+	manochrome_build
+	+-- css
+	│   \-- manochrome_dark.css
+	+-- index.html
+	\-- js
+	    \-- manochrome.js
 
 where <theme> is the theme chosen with the B<-t> flag and
 <output.html> is the output file name chosen with B<-o>.

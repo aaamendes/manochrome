@@ -357,12 +357,12 @@ pre {
 
 <p>This perl script uses <code>Pod::Html</code> to generate HTML from a <i>.pod</i> file. If used without the <b>-f</b> flag, it will create a directory <i>manochrome_build</i> with the structure</p>
 
-<pre><code>  manochrome_build/
-  &#x251C;&#x2500;&#x2500; css
-  &#x2502;&nbsp;&nbsp; &#x2514;&#x2500;&#x2500; manochrome_&lt;theme&gt;.css
-  &#x251C;&#x2500;&#x2500; &lt;output.html&gt;
-  &#x2514;&#x2500;&#x2500; js
-      &#x2514;&#x2500;&#x2500; manochrome.js</code></pre>
+<pre><code>        manochrome_build
+        +-- css
+        &#x2502;&nbsp;&nbsp; \-- manochrome_dark.css
+        +-- index.html
+        \-- js
+            \-- manochrome.js</code></pre>
 
 <p>where &lt;theme&gt; is the theme chosen with the <b>-t</b> flag and &lt;output.html&gt; is the output file name chosen with <b>-o</b>.</p>
 
