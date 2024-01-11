@@ -244,7 +244,7 @@ pre {
           <li><a href="#Javascript">Javascript</a></li>
           <li><a href="#class-MANochrome">class MANochrome</a></li>
           <li><a href="#class-MANochrome_pod">class MANochrome_pod</a></li>
-          <li><a href="#manochrome-options">manochrome options</a></li>
+          <li><a href="#options">options</a></li>
         </ul>
       </li>
       <li><a href="#manopod2html">manopod2html</a>
@@ -258,7 +258,7 @@ pre {
     <ul>
       <li><a href="#Build-from-POD">Build from POD</a></li>
       <li><a href="#Build-from-MAN">Build from MAN</a></li>
-      <li><a href="#manochrome-options1">manochrome options</a></li>
+      <li><a href="#manochrome-options">manochrome options</a></li>
     </ul>
   </li>
   <li><a href="#INSTALLATION">INSTALLATION</a></li>
@@ -316,7 +316,7 @@ pre {
 
 <pre><code>  const manochrome = new MANochrome_pod();</code></pre>
 
-<h3 id="manochrome-options">manochrome options</h3>
+<h3 id="options">options</h3>
 
 <p>When initializing with <code>new MANochrome_pod()</code> an <i>options</i> object can can be passed. This must be adjusted manually but is very easy. Take a look at <i>js/init.js</i>, <a href="#manopod2html">&quot;manopod2html&quot;</a> inserts the content of this file inside a script tag below the closing body tag.</p>
 
@@ -413,7 +413,7 @@ pre {
 <pre><code>  man man | rman -f POD | \
   manopod2html -o man.html -t dark -f</code></pre>
 
-<h2 id="manochrome-options1">manochrome options</h2>
+<h2 id="manochrome-options">manochrome options</h2>
 
 <p>Add this script to the bottom of your html before the closing body tag to initialize <code>MANochrome_pod</code> with options.</p>
 

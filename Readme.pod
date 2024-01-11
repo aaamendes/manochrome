@@ -66,7 +66,7 @@ Javascript after F<js/manochrome.js> was included.
 
   const manochrome = new MANochrome_pod();
 
-=head3 manochrome options
+=head3 options
 
 When initializing with C<new MANochrome_pod()> an I<options> object
 can can be passed. This must be adjusted manually but is very easy. 
