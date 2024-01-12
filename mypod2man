@@ -1,5 +1,8 @@
 #!/usr/bin/perl
 
+# Just a script to create manochrome manpage.
+# To create your own man pages use pod2man.
+
 use strict;
 use warnings;
 use File::Copy;
@@ -13,10 +16,10 @@ getopts('f', \%opts);
 my $cwd = dirname(__FILE__);
 my $cstring="MANochrome";
 my $nstring="manochrome";
-my $pod_outfile = "${cwd}/${nstring}.pod";
-my $readme="$cwd/../../Readme.pod";
-my $mandir="$cwd/../man/man1";
-my $infile="$cwd/${nstring}.pod";
+my $pod_outfile = "${cwd}/doc/pod/${nstring}.pod";
+my $readme="$cwd/Readme.pod";
+my $mandir="$cwd/doc/man/man1";
+my $infile="$cwd/doc/pod/${nstring}.pod";
 my $outfile="$mandir/${nstring}.1";
 my $copyoutfile="$mandir/manopod2html.1";
 my $date=`date "+%Y-%m-%d"`;
