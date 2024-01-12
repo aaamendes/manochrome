@@ -1,30 +1,85 @@
-#!/bin/bash
+#!/usr/bin/perl
 
-CSTRING="MANochrome"
-NSTRING="manochrome"
-README="Readme.pod"
-MANDIR="../man/man1"
-INFILE="${NSTRING}.pod"
-OUTFILE="${MANDIR}/${NSTRING}.1"
-COPYOUTFILE="${MANDIR}/manopod2html.1"
-DATE=`date "+%Y-%m-%d"`
-VERSION="v0.1"
+use strict;
+use warnings;
+use File::Copy;
+use File::Basename;
+use Pod::Man;
+use Getopt::Std;
 
-[[ ! -d $MANDIR ]] && echo "Could not find $MANDIR." && exit 1
+my %opts;
+getopts('f', \%opts);
 
-[[ ! -e ../../${README} ]] && echo "Could not find ${README}." \
-    && exit 1
+my $cwd = dirname(__FILE__);
+my $cstring="MANochrome";
+my $nstring="manochrome";
+my $pod_outfile = "${cwd}/${nstring}.pod";
+my $readme="$cwd/../../Readme.pod";
+my $mandir="$cwd/../man/man1";
+my $infile="$cwd/${nstring}.pod";
+my $outfile="$mandir/${nstring}.1";
+my $copyoutfile="$mandir/manopod2html.1";
+my $date=`date "+%Y-%m-%d"`;
+chomp($date);
+my $version="v0.1";
 
-cp ../../${README} ./${NSTRING}.pod
+die "Could not find $mandir.\n" if (! -d $mandir);
+die "Could not find $readme.\n" if (! -e $readme);
+die "$infile does not exist.\n" if (! -e $infile);
 
-[[ ! -e $INFILE ]] && echo "$INFILE does not exist." && exit 1
+copy($readme, $pod_outfile);
 
-pod2man -n $NSTRING -c $CSTRING -d "$DATE" \
-    --release=$VERSION < $INFILE > $OUTFILE
+# Filter HTML from .pod if $opts{f}.
+# The HTML is only for github in Readme.pod.
+filter_html($pod_outfile) if ($opts{f});
 
-[[ ! -e $OUTFILE ]] && echo "$OUTFILE not created." && exit 1
+# Convert pod to man.
+my $parser = Pod::Man->new(
+    center      => $cstring,
+    release     => $version,
+    section     => 1,
+    name        => $nstring,
+    date        => $date
+);
+$parser->parse_from_file($infile, $outfile);
 
-cp $OUTFILE $COPYOUTFILE
+# Create copy of manochrome.1
+# man pages for manochrome and manopod2html are identical.
+copy($outfile, $copyoutfile);
 
-echo "File $OUTFILE created."
-echo "File $COPYOUTFILE created."
+die "$outfile does not exist" if (! -e $outfile);
+die "$copyoutfile does not exist" if (! -e $copyoutfile);
+
+print <<END;
+Created $outfile
+Created $copyoutfile
+END
+
+sub filter_html {
+    my ($file) = @_;
+    my $filter = 0;
+
+    open(RF, "<$file") or die $!;
+    my @rf = <RF>;
+    close(RF);
+
+    open(EDIT, ">$file") or die $!;
+
+    for (@rf) {
+        if ($_ =~ m/^=begin html/) {
+            $filter = 1;
+            next;
+        }
+
+        if ($_ =~ m/^=end html/) {
+            $filter = 0;
+            next;
+        }
+
+        next if $filter;
+
+        print EDIT $_;
+    }
+
+    close(EDIT);
+}
