@@ -1,5 +1,6 @@
 =pod
 
+
 =head1 NAME
 
 MANochrome
@@ -66,7 +67,7 @@ Javascript after F<js/manochrome.js> was included.
 
   const manochrome = new MANochrome_pod();
 
-=head3 manochrome options
+=head3 options
 
 When initializing with C<new MANochrome_pod()> an I<options> object
 can can be passed. This must be adjusted manually but is very easy. 
@@ -90,11 +91,11 @@ An array of objects like:
       },
       {
         "url": "https://perl.org",
-        "html": "🐫 perl.org"
+        "html": "perl.org"
       },
       {
         "url": "https://perlmonks.org",
-        "html": "🐫 perlmonks.org"
+        "html": "perlmonks.org"
       }
     ]
 
@@ -110,12 +111,12 @@ F<manochrome_build> with the structure
 
 =encoding UTF-8
 
-  manochrome_build/
-  ├── css
-  │   └── manochrome_<theme>.css
-  ├── <output.html>
-  └── js
-      └── manochrome.js
+	manochrome_build
+	+-- css
+	|   \-- manochrome_dark.css
+	+-- index.html
+	\-- js
+	    \-- manochrome.js
 
 where <theme> is the theme chosen with the B<-t> flag and
 <output.html> is the output file name chosen with B<-o>.
@@ -186,11 +187,11 @@ initialize C<MANochrome_pod> with options.
           },
           {
             "url": "https://perl.org",
-            "html": "🐫 perl.org"
+            "html": "perl.org"
           },
           {
             "url": "https://perlmonks.org",
-            "html": "🐫 perlmonks.org"
+            "html": "perlmonks.org"
           }
         ]
       };

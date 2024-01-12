@@ -55,7 +55,7 @@
 .\" ========================================================================
 .\"
 .IX Title "manochrome 1"
-.TH manochrome 1 2024-01-11 v0.1 MANochrome
+.TH manochrome 1 2024-01-12 v0.1 MANochrome
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -130,8 +130,8 @@ Javascript after \fIjs/manochrome.js\fR was included.
 \&  const manochrome = new MANochrome_pod();
 .Ve
 .PP
-\fImanochrome options\fR
-.IX Subsection "manochrome options"
+\fIoptions\fR
+.IX Subsection "options"
 .PP
 When initializing with \f(CW\*(C`new MANochrome_pod()\*(C'\fR an \fIoptions\fR object
 can can be passed. This must be adjusted manually but is very easy. 
@@ -152,11 +152,11 @@ An array of objects like:
 \&      },
 \&      {
 \&        "url": "https://perl.org",
-\&        "html": "🐫 perl.org"
+\&        "html": "perl.org"
 \&      },
 \&      {
 \&        "url": "https://perlmonks.org",
-\&        "html": "🐫 perlmonks.org"
+\&        "html": "perlmonks.org"
 \&      }
 \&    ]
 .Ve
@@ -169,12 +169,12 @@ If used without the \fB\-f\fR flag, it will create a directory
 \&\fImanochrome_build\fR with the structure
 .PP
 .Vb 6
-\&  manochrome_build/
-\&  ├── css
-\&  │\ \  └── manochrome_<theme>.css
-\&  ├── <output.html>
-\&  └── js
-\&      └── manochrome.js
+\&        manochrome_build
+\&        +\-\- css
+\&        |\ \  \e\-\- manochrome_dark.css
+\&        +\-\- index.html
+\&        \e\-\- js
+\&            \e\-\- manochrome.js
 .Ve
 .PP
 where <theme> is the theme chosen with the \fB\-t\fR flag and
@@ -241,11 +241,11 @@ initialize \f(CW\*(C`MANochrome_pod\*(C'\fR with options.
 \&          },
 \&          {
 \&            "url": "https://perl.org",
-\&            "html": "🐫 perl.org"
+\&            "html": "perl.org"
 \&          },
 \&          {
 \&            "url": "https://perlmonks.org",
-\&            "html": "🐫 perlmonks.org"
+\&            "html": "perlmonks.org"
 \&          }
 \&        ]
 \&      };
