@@ -48,13 +48,13 @@ class MANochrome {
     if (this.navi_open) {
       navi.classList.add("navi-hide");
       content.classList.add("c-move-left");
-      link.classList.add("rotate-180");
+      link.classList.add("navi-closed-link");
       this.navi_open = !this.navi_open;
     }
     else {
       navi.classList.remove("navi-hide");
       content.classList.remove("c-move-left");
-      link.classList.remove("rotate-180");
+      link.classList.remove("navi-closed-link");
       this.navi_open = !this.navi_open;
     }
   }
@@ -68,7 +68,6 @@ class MANochrome {
       let a = document.createElement("a");
       a.setAttribute("id", "open-close-link");
       a.setAttribute("href", "#");
-      a.textContent = "<";
 
       a.addEventListener("click", (e) => {
         e.preventDefault();

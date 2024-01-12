@@ -160,7 +160,7 @@ ul li a:hover, ul li a:active, u li a:focus {
   padding: 1rem;
 }
 
-.open-close-wrapper a {
+.open-close-wrapper a#open-close-link {
   all: initial;
   font-size: .8rem;
   width: 21px;
@@ -177,13 +177,22 @@ ul li a:hover, ul li a:active, u li a:focus {
   justify-content: center;
   transition: all .3s;
 }
-.open-close-wrapper a:hover {
+
+a#open-close-link::before {
+  content: '《';
+  position: relative;
+  left: -.2rem;
+}
+a#open-close-link:hover {
   background: #fff;
   color: #111;
 }
 
-.rotate-180 {
-  transform: rotate(180deg) !important;
+.navi-closed-link {
+}
+.navi-closed-link::before {
+  content: '》' !important;
+  left: .2rem !important;
 }
 
 .content {
@@ -572,13 +581,13 @@ class MANochrome {
     if (this.navi_open) {
       navi.classList.add("navi-hide");
       content.classList.add("c-move-left");
-      link.classList.add("rotate-180");
+      link.classList.add("navi-closed-link");
       this.navi_open = !this.navi_open;
     }
     else {
       navi.classList.remove("navi-hide");
       content.classList.remove("c-move-left");
-      link.classList.remove("rotate-180");
+      link.classList.remove("navi-closed-link");
       this.navi_open = !this.navi_open;
     }
   }
@@ -592,7 +601,6 @@ class MANochrome {
       let a = document.createElement("a");
       a.setAttribute("id", "open-close-link");
       a.setAttribute("href", "#");
-      a.textContent = "<";
 
       a.addEventListener("click", (e) => {
         e.preventDefault();

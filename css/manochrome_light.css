@@ -152,7 +152,7 @@ ul li a:hover, ul li a:active, u li a:focus {
   padding: 1rem;
 }
 
-.open-close-wrapper a {
+.open-close-wrapper a#open-close-link {
   all: initial;
   font-size: .8rem;
   width: 21px;
@@ -169,13 +169,22 @@ ul li a:hover, ul li a:active, u li a:focus {
   justify-content: center;
   transition: all .3s;
 }
-.open-close-wrapper a:hover {
+
+a#open-close-link::before {
+  content: '《';
+  position: relative;
+  left: -.2rem;
+}
+a#open-close-link:hover {
   background: #fff;
   color: #111;
 }
 
-.rotate-180 {
-  transform: rotate(180deg) !important;
+.navi-closed-link {
+}
+.navi-closed-link::before {
+  content: '》' !important;
+  left: .2rem !important;
 }
 
 .content {
