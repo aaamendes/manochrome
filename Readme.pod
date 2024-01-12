@@ -1,5 +1,11 @@
 =pod
 
+=begin html
+
+<img src="img/screeny.png">
+
+=end html
+
 =head1 NAME
 
 MANochrome
