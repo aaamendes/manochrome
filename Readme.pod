@@ -91,7 +91,7 @@ An array of objects like:
 
     "links": [
       {
-        "url": "https://github.com/medecaj/manochrome.git",
+        "url": "https://github.com/aaamendes/manochrome.git",
         "html": "<img src=\"img/github-mark-white.svg\""> Repo"
       },
       {
@@ -155,7 +155,7 @@ Build a single file with css and javascript included.
 =head2 Build from POD
 
 Build C<index.html> from C<Readme.pod> in the repository
-L<https://github.com/medecaj/manochrome.git>
+L<https://github.com/aaamendes/manochrome.git>
 
   manopod2html -i Readme.pod -o index.html -t dark -f
 
@@ -187,7 +187,7 @@ initialize C<MANochrome_pod> with options.
          */
         "links": [
           {
-            "url": "https://github.com/medecaj/manochrome.git",
+            "url": "https://github.com/aaamendes/manochrome.git",
             "html": "<img src=\"img/github-mark-white.svg\"> Repo"
           },
           {
@@ -251,8 +251,8 @@ L<groff(1)>
 
 =head1 AUTHORS
 
-L<Albert Mendes|mailto:medecaj@pm.me>
-L<https://github.com/medecaj>
+L<Albert Mendes|mailto:tray.mendes@gmail.com>
+L<https://github.com/aaamendes>
 
 =head1 COPYRIGHT
 
