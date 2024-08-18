@@ -1,0 +1,13 @@
+# Configuration for manopod2html
+# vim: se ft=perl:
+
+{
+    # Include style sheets in the <head>.
+    # If -f is used the content will be put inside <style>.
+    css_files => [
+    ],
+    # Include .js files before </body> in order.
+    # If -f is used content will be put inside <script>.
+    javascript_files => [
+    ]
+}
