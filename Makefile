@@ -56,7 +56,7 @@ $(LCSSFILES):
 subdirs: $(SUBDIRS)
 
 $(SUBDIRS): 
-	mkdir $@
+	mkdir -p $@
 
 $(CSSDIR): $(packagedir)
 $(JSDIR): $(packagedir)
