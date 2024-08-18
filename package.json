@@ -16,7 +16,7 @@
     "man2html",
     "pod2html"
   ],
-  "author": "medecaj",
+  "author": "aaamendes",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^3.0.2",
