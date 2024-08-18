@@ -121,12 +121,19 @@ class MANochrome {
         return;
       }
 
+      let a = document.createElement("a");
+      a.classList.add("manochrome-logo-link");
+      a.setAttribute("href", "#");
+
       let navigation_node = document.getElementById("navigation");
       let img = document.createElement("img");
       img.setAttribute("src", this.options.logo_path);
+      img.setAttribute("id", "manochrome-logo");
       img.style.width = "100%";
 
-      navigation_node.insertBefore(img, navigation_node.firstChild);
+      a.appendChild(img);
+
+      navigation_node.insertBefore(a, navigation_node.firstChild);
 
       resolve(true);
     });

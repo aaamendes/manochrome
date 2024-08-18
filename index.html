@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title></title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<link rev="made" href="mailto:root@bbmhh.p1s.plx.sd.apple.com" />
+<link rev="made" href="mailto:root@sonoma-arm64.local" />
 <style>
 * {
   color: initial;
@@ -305,9 +305,9 @@ pre {
 
 <p>Available themes are</p>
 
-<pre><code>  light
-  dark
-  monk</code></pre>
+<pre><code>light
+dark
+monk</code></pre>
 
 <h3 id="Javascript">Javascript</h3>
 
@@ -323,7 +323,7 @@ pre {
 
 <p>The class must be initialized with some Javascript after <i>js/manochrome.js</i> was included.</p>
 
-<pre><code>  const manochrome = new MANochrome_pod();</code></pre>
+<pre><code>const manochrome = new MANochrome_pod();</code></pre>
 
 <h3 id="options">options</h3>
 
@@ -342,20 +342,20 @@ pre {
 
 <p>An array of objects like:</p>
 
-<pre><code>    &quot;links&quot;: [
-      {
-        &quot;url&quot;: &quot;https://github.com/medecaj/manochrome.git&quot;,
-        &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&quot;&gt; Repo&quot;
-      },
-      {
-        &quot;url&quot;: &quot;https://perl.org&quot;,
-        &quot;html&quot;: &quot;perl.org&quot;
-      },
-      {
-        &quot;url&quot;: &quot;https://perlmonks.org&quot;,
-        &quot;html&quot;: &quot;perlmonks.org&quot;
-      }
-    ]</code></pre>
+<pre><code>&quot;links&quot;: [
+  {
+    &quot;url&quot;: &quot;https://github.com/aaamendes/manochrome.git&quot;,
+    &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&quot;&gt; Repo&quot;
+  },
+  {
+    &quot;url&quot;: &quot;https://perl.org&quot;,
+    &quot;html&quot;: &quot;perl.org&quot;
+  },
+  {
+    &quot;url&quot;: &quot;https://perlmonks.org&quot;,
+    &quot;html&quot;: &quot;perlmonks.org&quot;
+  }
+]</code></pre>
 
 </dd>
 </dl>
@@ -366,12 +366,12 @@ pre {
 
 <p>This perl script uses <code>Pod::Html</code> to generate HTML from a <i>.pod</i> file. If used without the <b>-f</b> flag, it will create a directory <i>manochrome_build</i> with the structure</p>
 
-<pre><code>        manochrome_build
-        +-- css
-        |&nbsp;&nbsp; \-- manochrome_dark.css
-        +-- index.html
-        \-- js
-            \-- manochrome.js</code></pre>
+<pre><code>manochrome_build
++-- css
+|   \-- manochrome_dark.css
++-- index.html
+\-- js
+    \-- manochrome.js</code></pre>
 
 <p>where &lt;theme&gt; is the theme chosen with the <b>-t</b> flag and &lt;output.html&gt; is the output file name chosen with <b>-o</b>.</p>
 
@@ -411,65 +411,65 @@ pre {
 
 <h2 id="Build-from-POD">Build from POD</h2>
 
-<p>Build <code>index.html</code> from <code>Readme.pod</code> in the repository <a href="https://github.com/medecaj/manochrome.git">https://github.com/medecaj/manochrome.git</a></p>
+<p>Build <code>index.html</code> from <code>Readme.pod</code> in the repository <a href="https://github.com/aaamendes/manochrome.git">https://github.com/aaamendes/manochrome.git</a></p>
 
-<pre><code>  manopod2html -i Readme.pod -o index.html -t dark -f</code></pre>
+<pre><code>manopod2html -i Readme.pod -o index.html -t dark -f</code></pre>
 
 <h2 id="Build-from-MAN">Build from MAN</h2>
 
 <p>The tool <a href="http://man.he.net/man1/rman">rman(1)</a> can create <i>.pod</i> files from man pages. We use it in combination with manopod2html:</p>
 
-<pre><code>  man man | rman -f POD | \
-  manopod2html -o man.html -t dark -f</code></pre>
+<pre><code>man man | rman -f POD | \
+manopod2html -o man.html -t dark -f</code></pre>
 
 <h2 id="manochrome-options">manochrome options</h2>
 
 <p>Add this script to the bottom of your html before the closing body tag to initialize <code>MANochrome_pod</code> with options.</p>
 
-<pre><code>  &lt;script&gt;
-    () =&gt; {
-      &#39;use strict&#39;;
-    
-      const options = {
-        /*
-         * Add a logo to top of the sidebar.
-         */
-        &quot;logo_path&quot;: &quot;img/logo.png&quot;,
-        /*
-         * Add links to the &quot;LINKS&quot; section at the bottom of the sidebar.
-         * The &quot;LINKS&quot; section will only be created if this option is passed.
-         */
-        &quot;links&quot;: [
-          {
-            &quot;url&quot;: &quot;https://github.com/medecaj/manochrome.git&quot;,
-            &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&gt; Repo&quot;
-          },
-          {
-            &quot;url&quot;: &quot;https://perl.org&quot;,
-            &quot;html&quot;: &quot;perl.org&quot;
-          },
-          {
-            &quot;url&quot;: &quot;https://perlmonks.org&quot;,
-            &quot;html&quot;: &quot;perlmonks.org&quot;
-          }
-        ]
-      };
-    
-      const manochrome = (MANochrome.has_index_id()) ? 
-        new MANochrome_pod(options) : false;
-    
-    })();
-  &lt;/script&gt;</code></pre>
+<pre><code>&lt;script&gt;
+  () =&gt; {
+    &#39;use strict&#39;;
+  
+    const options = {
+      /*
+       * Add a logo to top of the sidebar.
+       */
+      &quot;logo_path&quot;: &quot;img/logo.png&quot;,
+      /*
+       * Add links to the &quot;LINKS&quot; section at the bottom of the sidebar.
+       * The &quot;LINKS&quot; section will only be created if this option is passed.
+       */
+      &quot;links&quot;: [
+        {
+          &quot;url&quot;: &quot;https://github.com/aaamendes/manochrome.git&quot;,
+          &quot;html&quot;: &quot;&lt;img src=\&quot;img/github-mark-white.svg\&quot;&gt; Repo&quot;
+        },
+        {
+          &quot;url&quot;: &quot;https://perl.org&quot;,
+          &quot;html&quot;: &quot;perl.org&quot;
+        },
+        {
+          &quot;url&quot;: &quot;https://perlmonks.org&quot;,
+          &quot;html&quot;: &quot;perlmonks.org&quot;
+        }
+      ]
+    };
+  
+    const manochrome = (MANochrome.has_index_id()) ? 
+      new MANochrome_pod(options) : false;
+  
+  })();
+&lt;/script&gt;</code></pre>
 
 <h1 id="INSTALLATION">INSTALLATION</h1>
 
 <p>Just type</p>
 
-<pre><code>  make</code></pre>
+<pre><code>make</code></pre>
 
 <p>to install and</p>
 
-<pre><code>  make uninstall</code></pre>
+<pre><code>make uninstall</code></pre>
 
 <p>to uninstall.</p>
 
@@ -517,11 +517,11 @@ pre {
 
 <h1 id="AUTHORS">AUTHORS</h1>
 
-<p><a href="mailto:medecaj@pm.me">Albert Mendes</a> <a href="https://github.com/medecaj">https://github.com/medecaj</a></p>
+<p><a href="mailto:tray.mendes@gmail.com">Albert Mendes</a> <a href="https://github.com/aaamendes">https://github.com/aaamendes</a></p>
 
 <h1 id="COPYRIGHT">COPYRIGHT</h1>
 
-<p><span style="white-space: nowrap;"><i>Copyright &copy; 2024 Albert Mendes</i></span></p>
+<p><span style="white-space: nowrap;"><i>Copyright © 2024 Albert Mendes</i></span></p>
 
 <p>MANochrome is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 
@@ -654,12 +654,19 @@ class MANochrome {
         return;
       }
 
+      let a = document.createElement("a");
+      a.classList.add("manochrome-logo-link");
+      a.setAttribute("href", "#");
+
       let navigation_node = document.getElementById("navigation");
       let img = document.createElement("img");
       img.setAttribute("src", this.options.logo_path);
+      img.setAttribute("id", "manochrome-logo");
       img.style.width = "100%";
 
-      navigation_node.insertBefore(img, navigation_node.firstChild);
+      a.appendChild(img);
+
+      navigation_node.insertBefore(a, navigation_node.firstChild);
 
       resolve(true);
     });
@@ -882,36 +889,39 @@ class MANochrome_groff extends MANochrome {
 (() => {
   'use strict';
 
-  const options = {
-    /*
-     * Add a logo to top of the sidebar.
-     */
-    "logo_path": "img/logo.png",
-    /*
-     * Add links to the "LINKS" section at the bottom of the sidebar.
-     * The "LINKS" section will only be created if this option is passed.
-     */
-    "links": [
-      {
-        "url": "https://github.com/medecaj/manochrome.git",
-        "html": "<img src=\"img/github-mark-white.svg\" style=\"height:1rem;vertical-align:middle\"> MANochrome repository"
-      },
-      {
-        "url": "https://perl.org",
-        "html": "🐫 perl.org"
-      },
-      {
-        "url": "https://perlmonks.org",
-        "html": "🐫 perlmonks.org"
-      }
-    ]
-  };
+  const options = {};
+  /*
+   * Add a logo to top of the sidebar.
+   */
+  options.logo_path = "img/logo.png",
+  /*
+   * Add links to the "LINKS" section at the bottom of the sidebar.
+   * The "LINKS" section will only be created if this option is passed.
+   */
+  options.links = [
+    {
+      "url": "https://github.com/aaamendes/manochrome.git",
+      "html": "<img src=\"img/github-mark-white.svg\" style=\"height:1rem;vertical-align:middle\"> MANochrome repository"
+    },
+    {
+      "url": "https://perl.org",
+      "html": "🐫 perl.org"
+    },
+    {
+      "url": "https://perlmonks.org",
+      "html": "🐫 perlmonks.org"
+    }
+  ];
 
+  /*
+   * Initialize manochrome
+   */
   const manochrome = (MANochrome.has_index_id()) ? 
     new MANochrome_pod(options) : false;
 
 })();
-</script></body>
+</script>
+</body>
 
 </html>
 
